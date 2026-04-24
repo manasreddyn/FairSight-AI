@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FairDecision AI | Ethical Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0f0d13",
+                        "on-background": "#e6e0e9",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-container": "#211f24",
+                        "inverse-on-surface": "#322f35",
+                        "tertiary-fixed": "#ffdf93",
+                        "on-primary-fixed": "#22005d",
+                        "on-tertiary-container": "#503d00",
+                        "surface": "#141218",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#6750a4",
+                        "on-secondary-container": "#bfb2da",
+                        "surface-container-highest": "#36343a",
+                        "error-container": "#93000a",
+                        "surface-tint": "#cfbcff",
+                        "secondary-fixed": "#e9ddff",
+                        "on-tertiary": "#3e2e00",
+                        "secondary": "#cdc0e9",
+                        "tertiary-container": "#c9a74d",
+                        "inverse-surface": "#e6e0e9",
+                        "surface-variant": "#36343a",
+                        "primary-fixed-dim": "#cfbcff",
+                        "surface-dim": "#141218",
+                        "on-primary": "#381e72",
+                        "background": "#141218",
+                        "surface-bright": "#3b383e",
+                        "primary-container": "#6750a4",
+                        "surface-container-low": "#1d1b20",
+                        "outline-variant": "#494551",
+                        "primary-fixed": "#e9ddff",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "secondary-container": "#4d4465",
+                        "on-surface": "#e6e0e9",
+                        "tertiary": "#e7c365",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-surface-variant": "#cbc4d2",
+                        "on-primary-container": "#e0d2ff",
+                        "surface-container-high": "#2b292f",
+                        "on-secondary": "#342b4b",
+                        "outline": "#948e9c",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1f1635",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "primary": "#cfbcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "xl": "48px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Syne", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "h3": ["Syne", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "mono-data": ["monospace"],
+                        "h2": ["Syne", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "h1": ["40px", {"lineHeight": "1.1", "letterSpacing": "-1px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "1.5px", "fontWeight": "500"}],
+                        "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "1.0", "fontWeight": "400"}],
+                        "h2": ["28px", {"lineHeight": "1.2", "letterSpacing": "normal", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0F;
+            color: #e6e0e9;
+        }
+        .justice-border {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .justice-border-active {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .justice-blue-bg {
+            background-color: #6750A4;
+        }
+        .justice-blue-text {
+            color: #cfbcff;
+        }
+        .bias-amber {
+            border-bottom: 2px solid #e7c365;
+            padding-bottom: 1px;
+        }
+        .scroller-track {
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+        }
+        .scroller-thumb {
+            width: 12px;
+            height: 12px;
+            background: #6750A4;
+            border-radius: 50%;
+            margin-top: -5px;
+        }
+        .intensity-segment {
+            height: 20px;
+            width: 100%;
+            margin-bottom: 2px;
+        }
+        @keyframes pulse-status {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        .animate-pulse-status {
+            animation: pulse-status 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[72px] lg:w-[240px] bg-[#0D0D14] border-r border-white/10 z-50 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-white/5 flex items-center justify-center font-black text-white tracking-tighter border border-white/10">FD</div>
+<div class="hidden lg:block">
+<p class="font-mono uppercase tracking-widest text-[10px] text-white">FairDecision AI</p>
+<p class="text-[8px] text-slate-500 uppercase tracking-tighter">Ethical Intelligence</p>
+</div>
+</div>
+<nav class="flex-1 mt-8">
+<div class="flex items-center px-6 py-4 bg-white/5 text-[#6750A4] border-l-2 border-[#6750A4] cursor-pointer">
+<span class="material-symbols-outlined mr-4" data-icon="input">input</span>
+<span class="hidden lg:block font-mono uppercase tracking-widest text-[10px]">Input</span>
+</div>
+<div class="flex items-center px-6 py-4 text-slate-500 hover:text-white hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined mr-4" data-icon="analytics">analytics</span>
+<span class="hidden lg:block font-mono uppercase tracking-widest text-[10px]">Analysis</span>
+</div>
+<div class="flex items-center px-6 py-4 text-slate-500 hover:text-white hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined mr-4" data-icon="gavel">gavel</span>
+<span class="hidden lg:block font-mono uppercase tracking-widest text-[10px]">Trial</span>
+</div>
+<div class="flex items-center px-6 py-4 text-slate-500 hover:text-white hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined mr-4" data-icon="history">history</span>
+<span class="hidden lg:block font-mono uppercase tracking-widest text-[10px]">History</span>
+</div>
+</nav>
+<div class="p-6">
+<div class="flex items-center text-slate-500 hover:text-white cursor-pointer">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+<span class="hidden lg:block font-mono uppercase tracking-widest text-[10px]">Settings</span>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full h-[48px] bg-[#0A0A0F] border-b border-white/10 z-40 flex items-center justify-between px-6 pl-[88px] lg:pl-[256px]">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#6750A4] animate-pulse-status"></div>
+<span class="font-sans text-[10px] font-bold uppercase tracking-wider text-[#6750A4]">AI Online</span>
+</div>
+<nav class="hidden md:flex gap-6">
+<span class="font-sans text-xs font-bold uppercase tracking-wider text-[#6750A4] border-b border-[#6750A4] cursor-pointer">Overview</span>
+<span class="font-sans text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white cursor-pointer">Metrics</span>
+<span class="font-sans text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white cursor-pointer">Logs</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer" data-icon="sensors">sensors</span>
+<div class="w-8 h-8 bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-xs" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<!-- Right Panel: Insight Stream -->
+<aside class="fixed right-0 top-[48px] bottom-0 w-0 xl:w-[320px] bg-[#0D0D14] border-l border-white/10 hidden xl:flex flex-col">
+<div class="p-6 border-b border-white/10">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Insight Stream</h4>
+<div class="flex items-center gap-2 text-primary">
+<div class="w-3 h-3 border-2 border-t-transparent border-primary rounded-full animate-spin"></div>
+<span class="text-[10px] font-mono">AI Thinking...</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<div class="space-y-2 opacity-50">
+<p class="text-[11px] font-mono-data text-outline">14:02:11</p>
+<p class="text-xs text-on-surface leading-relaxed italic">Evaluating historical bias markers in region segment 'A-4'...</p>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] font-mono-data text-outline">14:02:45</p>
+<p class="text-xs text-on-surface leading-relaxed">System identified positive correlation between Income Level and Decision Speed.</p>
+</div>
+<div class="space-y-2">
+<p class="text-[11px] font-mono-data text-outline">14:03:02</p>
+<p class="text-xs text-on-surface leading-relaxed">Warning: Statistical threshold for 'Neutrality' exceeded in Section 2.</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[72px] lg:ml-[240px] xl:mr-[320px] pt-[48px] min-h-screen">
+<div class="max-w-[1440px] mx-auto p-gutter space-y-20">
+<!-- SECTION 1: SCENARIO BUILDER -->
+<section class="space-y-8" id="scenario-builder">
+<header class="flex justify-between items-end">
+<div>
+<h2 class="font-h2 text-h2 text-white">Scenario Builder</h2>
+<p class="font-body-sm text-on-surface-variant mt-2">Construct the initial conditions for judicial simulation.</p>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Card 1: Region -->
+<div class="bg-[#111118] justice-border p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Target Region</label>
+<div class="flex border border-white/10">
+<button class="flex-1 py-3 bg-white/5 text-primary text-[10px] font-mono uppercase tracking-widest border-r border-white/10">North</button>
+<button class="flex-1 py-3 text-slate-500 text-[10px] font-mono uppercase tracking-widest border-r border-white/10">South</button>
+<button class="flex-1 py-3 text-slate-500 text-[10px] font-mono uppercase tracking-widest border-r border-white/10">East</button>
+<button class="flex-1 py-3 text-slate-500 text-[10px] font-mono uppercase tracking-widest">West</button>
+</div>
+</div>
+<!-- Card 2: Population -->
+<div class="bg-[#111118] justice-border p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Population Density</label>
+<div class="flex items-center gap-6">
+<div class="font-h1 text-h1 text-white tabular-nums">482k</div>
+<div class="flex-1">
+<div class="scroller-track relative">
+<div class="absolute left-[40%] scroller-thumb"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] font-mono text-slate-500">
+<span>10k</span>
+<span>2M</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Damage Level -->
+<div class="bg-[#111118] justice-border p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Damage Intensity</label>
+<div class="flex items-end gap-2 h-24">
+<div class="intensity-segment bg-green-500/20 w-full"></div>
+<div class="intensity-segment bg-green-500/40 w-full"></div>
+<div class="intensity-segment bg-yellow-500/60 w-full border-t-2 border-yellow-500"></div>
+<div class="intensity-segment bg-orange-500/20 w-full opacity-20"></div>
+<div class="intensity-segment bg-red-500/20 w-full opacity-20"></div>
+</div>
+<p class="text-[10px] font-mono text-yellow-500 mt-4 text-center uppercase tracking-widest">Moderate Alert</p>
+</div>
+<!-- Card 4: Income Level -->
+<div class="bg-[#111118] justice-border p-lg flex flex-col justify-between">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-4 block">Mean Income Bracket</label>
+<div class="flex justify-center">
+<svg class="w-24 h-24 transform -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="#6750A4" stroke-dasharray="251.2" stroke-dashoffset="100.48" stroke-width="8"></circle>
+<line stroke="white" stroke-width="2" transform="rotate(216, 48, 48)" x1="48" x2="48" y1="48" y2="12"></line>
+</svg>
+</div>
+<div class="text-center mt-2">
+<span class="text-xs font-mono-data">$64,200</span>
+</div>
+</div>
+</div>
+<div class="flex justify-center">
+<button class="justice-blue-bg text-white h-14 px-12 font-label-caps text-[12px] uppercase tracking-[3px] flex items-center gap-4 hover:brightness-110 transition-all">
+                        Run Decision Analysis <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- SECTION 2: RESULT DASHBOARD -->
+<section class="space-y-8" id="result-dashboard">
+<div class="justice-border bg-[#111118] divide-y divide-white/5">
+<div class="grid grid-cols-1 md:grid-cols-3 divide-x divide-white/5">
+<div class="p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-4 block">Priority Score</label>
+<div class="font-h1 text-h1 text-white">8.42<span class="text-xs text-slate-500 ml-2">/ 10</span></div>
+</div>
+<div class="p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-4 block">Fairness Index</label>
+<div class="font-h1 text-h1 text-white">92.1%</div>
+</div>
+<div class="p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-4 block">Bias Detected</label>
+<div class="font-h1 text-h1 text-error">Low</div>
+</div>
+</div>
+<div class="p-lg space-y-6">
+<div>
+<div class="flex justify-between items-center mb-4">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant">Fairness Spectrum</label>
+<span class="text-[10px] font-mono-data text-white">NOMINAL STABILITY</span>
+</div>
+<div class="relative h-4 w-full bg-gradient-to-r from-red-900/50 via-amber-500/50 to-emerald-500/50 overflow-hidden">
+<div class="absolute left-0 h-full w-[2px] bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+<div class="absolute left-1/2 h-full w-[2px] bg-amber-500"></div>
+<div class="absolute right-0 h-full w-[2px] bg-emerald-500"></div>
+<!-- Marker -->
+<div class="absolute left-[88%] top-[-4px] bottom-[-4px] w-[3px] bg-white z-10 shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+</div>
+<div class="flex justify-between mt-2 text-[8px] font-mono text-slate-500 uppercase tracking-widest">
+<span>High Bias</span>
+<span>Cautionary</span>
+<span>Systemic Fair</span>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Factor Breakdown</label>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-mono w-24 text-slate-400">DAMAGE</span>
+<div class="flex-1 h-3 bg-white/5">
+<div class="h-full bg-primary w-[65%]"></div>
+</div>
+<span class="text-[10px] font-mono text-white">65%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-mono w-24 text-slate-400">POPULATION</span>
+<div class="flex-1 h-3 bg-white/5">
+<div class="h-full bg-primary w-[25%]"></div>
+</div>
+<span class="text-[10px] font-mono text-white">25%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-mono w-24 text-slate-400">INCOME</span>
+<div class="flex-1 h-3 bg-white/5">
+<div class="h-full bg-primary w-[10%]"></div>
+</div>
+<span class="text-[10px] font-mono text-white">10%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: AI EXPLANATION PANEL -->
+<section class="space-y-8" id="ai-explanation">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-7 bg-[#111118] justice-border p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Logic Narrative</label>
+<div class="space-y-4 font-body-md text-on-surface leading-relaxed">
+<p>The system's prioritization of Section A-4 was driven primarily by the <span class="bias-amber">Damage Intensity delta</span> relative to neighboring sectors. While population density suggested an alternative path, the ethical weighing engine determined that <span class="bias-amber">Income Level parity</span> required a systemic adjustment to ensure resource distribution was not skewed toward high-tax zones.</p>
+<p>Verification of judicial precedent suggests this weighting aligns with the <span class="text-primary italic">2029 Fairness Act</span>, though a variance of 0.04 remains in the margin of error for statistical equity.</p>
+</div>
+</div>
+<div class="md:col-span-5 bg-[#111118] justice-border p-lg">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-6 block">Structured Insights</label>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span class="text-xs text-on-surface leading-relaxed">Systemic check: Neutrality confirmed across 14 vectors.</span>
+</li>
+<li class="flex gap-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span class="text-xs text-on-surface leading-relaxed">Bias alert: Historical data shows 4% variance in South Sector.</span>
+</li>
+<li class="flex gap-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span class="text-xs text-on-surface leading-relaxed">Recommendation: Increase weight of 'Population' by 2.1%.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SECTION 4: AI ON TRIAL -->
+<section class="space-y-8" id="ai-trial">
+<header>
+<h2 class="font-h2 text-h2 text-white">Cross-Examination</h2>
+</header>
+<div class="bg-[#111118] justice-border flex flex-col h-[500px]">
+<div class="flex-1 p-lg overflow-y-auto space-y-8">
+<div class="space-y-2">
+<p class="font-mono text-[10px] text-[#6750A4] uppercase tracking-widest">Question (User)</p>
+<p class="text-on-background font-h3 text-h3">How did you account for the economic disparity in the North segment during the damage assessment?</p>
+</div>
+<div class="border-l border-white/10 pl-6 space-y-2">
+<p class="font-mono text-[10px] text-slate-500 uppercase tracking-widest">Answer (AI)</p>
+<div class="text-on-surface-variant text-sm leading-relaxed space-y-3">
+<p>Disparity was neutralized by normalizing damage costs against local median income. The raw damage value of $4.2M was re-indexed to a "Impact Factor" of 7.8, which is comparable to the $12M raw damage in the Central segment when adjusted for purchasing power.</p>
+<p class="text-[10px] font-mono-data opacity-50">LOG TRACE: WEIGHT_CALC.NORMALIZATION.STEP_2A</p>
+</div>
+</div>
+<div class="space-y-2">
+<p class="font-mono text-[10px] text-[#6750A4] uppercase tracking-widest">Question (User)</p>
+<p class="text-on-background font-h3 text-h3">Does this model prioritize property over human density?</p>
+</div>
+</div>
+<div class="p-6 border-t border-white/10 bg-[#0D0D14]">
+<div class="flex items-center gap-4 justice-border px-4 py-3 bg-[#0A0A0F]">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-slate-600" placeholder="Your examination..." type="text"/>
+<button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2">
+                                Examine <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: RECALIBRATION STUDIO -->
+<section class="space-y-8 pb-24" id="recalibration">
+<header>
+<h2 class="font-h2 text-h2 text-white">Recalibration Studio</h2>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Sliders -->
+<div class="lg:col-span-5 bg-[#111118] justice-border p-lg space-y-10">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block">System Weighting</label>
+<div class="space-y-6">
+<div class="space-y-4">
+<div class="flex justify-between text-[10px] font-mono">
+<span class="text-slate-400">DAMAGE WEIGHT</span>
+<span class="text-white">0.65</span>
+</div>
+<div class="h-1 bg-white/10 w-full relative">
+<div class="absolute left-0 h-full bg-primary w-[65%]"></div>
+<div class="absolute left-[65%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full cursor-pointer"></div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-[10px] font-mono">
+<span class="text-slate-400">POPULATION WEIGHT</span>
+<span class="text-white">0.25</span>
+</div>
+<div class="h-1 bg-white/10 w-full relative">
+<div class="absolute left-0 h-full bg-primary w-[25%]"></div>
+<div class="absolute left-[25%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full cursor-pointer"></div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-[10px] font-mono">
+<span class="text-slate-400">INCOME WEIGHT</span>
+<span class="text-white">0.10</span>
+</div>
+<div class="h-1 bg-white/10 w-full relative">
+<div class="absolute left-0 h-full bg-primary w-[10%]"></div>
+<div class="absolute left-[10%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full cursor-pointer"></div>
+</div>
+</div>
+</div>
+<button class="w-full justice-border bg-white/5 py-4 text-[10px] font-mono uppercase tracking-[2px] text-white hover:bg-white/10 transition-all">Apply Coefficients</button>
+</div>
+<!-- Comparison -->
+<div class="lg:col-span-7 grid grid-cols-2 gap-px bg-white/5 justice-border overflow-hidden">
+<!-- Before -->
+<div class="bg-[#111118] p-lg space-y-6">
+<label class="font-label-caps text-label-caps uppercase text-slate-500 block">Baseline</label>
+<div class="text-center py-10 border-b border-white/5">
+<p class="text-xs text-slate-500 font-mono mb-1 uppercase">Metric A</p>
+<p class="font-h2 text-h2 text-slate-400">0.82</p>
+</div>
+<div class="space-y-4">
+<p class="text-[9px] font-mono text-slate-600 uppercase">Fairness Delta</p>
+<div class="h-2 bg-white/5 relative">
+<div class="absolute inset-0 bg-amber-500/20 w-[40%]"></div>
+</div>
+</div>
+</div>
+<!-- After -->
+<div class="bg-[#14141d] p-lg space-y-6 relative overflow-hidden">
+<label class="font-label-caps text-label-caps uppercase text-primary block">Recalibrated</label>
+<div class="text-center py-10 border-b border-white/5">
+<p class="text-xs text-primary font-mono mb-1 uppercase">Metric A</p>
+<div class="flex items-center justify-center gap-2">
+<p class="font-h2 text-h2 text-white">0.94</p>
+<span class="text-[10px] text-emerald-500 font-mono">+14.6%</span>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-[9px] font-mono text-primary uppercase">Fairness Delta</p>
+<div class="h-2 bg-white/5 relative">
+<div class="absolute inset-0 bg-emerald-500/20 w-[85%]"></div>
+</div>
+</div>
+<!-- Diff Decor -->
+<div class="absolute -bottom-8 -right-8 opacity-5">
+<span class="material-symbols-outlined text-[160px]" data-icon="refresh">refresh</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating AI Status Badge (Desktop Only) -->
+<div class="fixed bottom-6 right-6 z-50 xl:hidden">
+<div class="bg-[#0D0D14] justice-border p-4 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse-status"></div>
+<span class="text-[10px] font-mono uppercase tracking-widest text-primary">Insight Ready</span>
+</div>
+</div>
+</body></html>
