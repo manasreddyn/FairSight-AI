@@ -85,3 +85,4 @@ The `server/` directory contains a `Dockerfile` ready for deployment.
 - **Fix Bias**: Adjusts the formula weight and re-evaluates automatically.
 - **Ask AI**: A direct conversational interface to interrogate the decision.
 "# FairSight-" 
+"# FairSight-" 
